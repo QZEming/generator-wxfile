@@ -1,6 +1,6 @@
 Page({
     data: {
-      text: "This is <%= fileName%> data."
+      text: "This is <%= pageName%> data."
     },
     onLoad: function(options) {
       // 页面创建时执行
