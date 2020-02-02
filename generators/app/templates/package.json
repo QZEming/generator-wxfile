@@ -9,7 +9,7 @@
     "author": "",
     "license": "ISC",
     "devDependencies": {
-        <% if(isProp){ %>
+        <% if(isPlop){ %>
         "plop": "^2.5.3"
         <% } %>
     }

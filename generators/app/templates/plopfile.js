@@ -4,7 +4,7 @@ module.exports = plop=>{
     plop.setActionType('changeRouter',(answers,config,plop)=>{
         fs.readFile('app.json',{},(err,data)=>{ // 读取app.json文件
             let d= JSON.parse(data.toString())
-            d.pages.push(`pages/${answers.fileName}/${answers.fileName}`) // 将当前新添加的内容写入app.json
+            d.pages.push(`pages/${answers.pageName}/${answers.pageName}`) // 将当前新添加的内容写入app.json
             d = JSON.stringify(d,"","\t")
             fs.writeFile('app.json',d,err=>{
                 if(err)
@@ -22,19 +22,19 @@ module.exports = plop=>{
         }],
         actions:[{
             type:'add', // 操作类型，这里是添加文件
-            path:'pages{{pageName}}/{{pageName}}.json', // 添加的文件的路径
+            path:'pages/{{pageName}}/{{pageName}}.json', // 添加的文件的路径
             templateFile:'plop-temp/tempPage.json' // 模板文件的路径
         },{
             type:'add', 
-            path:'pages{{pageName}}/{{pageName}}.js', 
+            path:'pages/{{pageName}}/{{pageName}}.js', 
             templateFile:'plop-temp/tempPage.js' 
         },{
             type:'add', 
-            path:'pages{{pageName}}/{{pageName}}.wxss', 
+            path:'pages/{{pageName}}/{{pageName}}.wxss', 
             templateFile:'plop-temp/tempPage.wxss' 
         },{
             type:'add', 
-            path:'pages{{pageName}}/{{pageName}}.wxml', 
+            path:'pages/{{pageName}}/{{pageName}}.wxml', 
             templateFile:'plop-temp/tempPage.wxml' 
         },{ // 修改app.json里面的路由
             type:'changeRouter'
