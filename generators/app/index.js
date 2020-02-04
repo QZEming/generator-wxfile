@@ -1,32 +1,42 @@
 const Generator = require("yeoman-generator")
 const fs = require("fs")
+const chalk = require("chalk")
+chalk.enabled = true
+chalk.level = 1
 
 module.exports = class extends Generator{
+    initializing(){ // 初始化方法，用来改变this.answer
+        // console.log(chalk.green('test wxfile'))
+    }
     prompting(){
-        return this.prompt([{ // 询问用户要创建的项目名称
-            type:"input",
-            name:"projectName",
-            message:"your project name is",
-            default:this.appname // 项目所在文件夹的名称
-        },{ // 询问用户的appID是多少
-            type:"input",
-            name:"appID",
-            message:"your appID is"
-        },{ // 询问用户初始化的第一个页面名称是什么
-            type:"input",
-            name:"pageName",
-            message:"the initialized page name is",
-            default:"index"
-        },{ // 询问用户是否使用plop工具
-            type:"confirm",
-            name:"isPlop",
-            message:"do you use plop",
-            default:true
-        }]).then(answer=>{
-            this.answer = answer // 将回答放到answer属性中
-        })
+        this.answer = require('../../config.json').prop
+        console.log(chalk.green("Welcome to use generator-wxfile"))
+        console.log(chalk.bgGray("answer the questions to init project"))
+        // return this.prompt([{ // 询问用户要创建的项目名称
+        //     type:"input",
+        //     name:"projectName",
+        //     message:"your project name is",
+        //     default:this.appname // 项目所在文件夹的名称
+        // },{ // 询问用户的appID是多少
+        //     type:"input",
+        //     name:"appID",
+        //     message:"your appID is"
+        // },{ // 询问用户初始化的第一个页面名称是什么
+        //     type:"input",
+        //     name:"pageName",
+        //     message:"the initialized page name is",
+        //     default:"index"
+        // },{ // 询问用户是否使用plop工具
+        //     type:"confirm",
+        //     name:"isPlop",
+        //     message:"do you use plop",
+        //     default:true
+        // }]).then(answer=>{
+        //     this.answer = answer // 将回答放到answer属性中
+        // })
     }
     writing(){
+        console.log(chalk.green('start creating'))
         const answer = this.answer
         const pageName = answer.pageName
         // 处理页面模板文件
